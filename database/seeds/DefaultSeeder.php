@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use App\User;
+use Illuminate\Support\Facades\Hash;
+
 class DefaultSeeder extends Seeder
 {
     /**
@@ -16,5 +19,14 @@ class DefaultSeeder extends Seeder
         $prepare = __DIR__.'/../../resources/db/database.sql';
         
         DB::unprepared(file_get_contents($prepare));
+
+        $data = [
+            'first_name' => 'admin',
+            'email' => 'admin@cyberolympus.com',
+            'password' => Hash::make('cyberadmin'),
+        ];
+
+        User::create($data);
+
     }
 }

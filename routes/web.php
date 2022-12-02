@@ -26,3 +26,6 @@ Route::get('/top-order-product', 'RepositoryController@topOrderProduct')->name('
 Route::get('/top-order-customer', 'RepositoryController@topOrderCustomer')->name('top-order-customer');
 Route::get('/top-order-agent', 'RepositoryController@topOrderAgent')->name('top-order-agent');
 Route::resource('/order', 'OrderController');
+
+Route::get('/customer-table', 'CustomersController@showTable')->name('customer.table');
+Route::resource('/customer', 'CustomersController');
