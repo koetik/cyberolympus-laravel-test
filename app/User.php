@@ -36,4 +36,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function customer()
+    {
+        return $this->hasOne(Models\Customer::class, 'id');
+    }
+
+    public function agent()
+    {
+        return $this->hasOne(Models\Agent::class, 'id');
+    }
+
+    public function customerOrder()
+    {
+        return $this->hasMany(Models\Order::class, 'customer_id');
+    }
+
+    public function agentOrder()
+    {
+        return $this->hasMany(Models\Order::class, 'agent_id');
+    }
+
+    public function getFullNameAttribute($value)
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
 }
